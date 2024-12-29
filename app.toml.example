@@ -1,0 +1,21 @@
+web_host_uri = "http://localhost:8080"
+solana_rpc_url = "https://mainnet.helius-rpc.com/?api-key=xxx"
+solana_wss_url = "wss://mainnet.helius-rpc.com/?api-key=xxx"
+private_key=""
+
+[rise_quickly_config]
+alarm_threshold = 10.0          # 买入阈值，累计多少个sol
+holding_time_threshold = 120    # 统计持币时间的阈值，多少秒
+
+[jito_config]
+tips_percentile = 25 # only support: 25 50 75 95 99  ref https://jito-labs.metabaseapp.com/public/dashboard/016d4d60-e168-4a8f-93c7-4cd5ec6c7c8d  
+tip_stream_url = "ws://bundles-api-rest.jito.wtf/api/v1/bundles/tip_stream"
+jito_sdk_url = "https://mainnet.block-engine.jito.wtf/api/v1"
+slippage = 28 
+extra_tip=0.0        #  在价格基础上加上的额外的小费sol
+
+
+
+[[monitors]]
+rule_type = "RiseQuickly"
+address = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"  # PUMP PROGRAM
