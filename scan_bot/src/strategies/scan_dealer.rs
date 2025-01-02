@@ -105,7 +105,7 @@ impl Statistics {
                                 "----> Alarm: {}, sol: {}, price: {}",
                                 coin,
                                 first_sol,
-                                events[0].data.get_price()
+                                events[events.len() - 1].data.get_price()
                             );
                         }
                     }
