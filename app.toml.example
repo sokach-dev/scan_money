@@ -5,6 +5,7 @@ private_key=""
 
 [rise_quickly_config]
 alarm_threshold = 10.0          # 买入阈值，累计多少个sol
+check_interval = 120            # 检查间隔，多少秒
 holding_time_threshold = 120    # 统计持币时间的阈值，多少秒
 
 [jito_config]

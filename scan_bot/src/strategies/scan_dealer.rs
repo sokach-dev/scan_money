@@ -15,6 +15,7 @@ use validator::Validate;
 pub struct ScanDealerConfig {
     #[validate(range(min = 0.0))]
     pub alarm_threshold: f64, // 警报阈值, 累计多少个sol
+    pub check_interval: u64,         // 检查间隔(s)
     pub holding_time_threshold: u64, // 统计持仓时间阈值(s)
 }
 
@@ -32,8 +33,8 @@ pub async fn init_statistics_manager() -> Result<()> {
 
     let statistics = Statistics {
         statistics_map: Arc::new(RwLock::new(HashMap::new())),
-        holding_time_threshold: Duration::from_secs(c.rise_quickly_config.holding_time_threshold), // 1 mintue
-        alarm_threshold: c.rise_quickly_config.alarm_threshold, // 10 sol
+        holding_time_threshold: Duration::from_secs(c.scan_dealer_config.holding_time_threshold), // 1 mintue
+        alarm_threshold: c.scan_dealer_config.alarm_threshold, // 10 sol
     };
 
     let statistics = Arc::new(statistics);
@@ -57,7 +58,9 @@ impl Statistics {
         info!("Start Statistics monitor");
 
         tokio::spawn(async move {
-            let mut interval = tokio::time::interval(Duration::from_secs(1));
+            let c = crate::config::get_global_config().await;
+            let mut interval =
+                tokio::time::interval(Duration::from_secs(c.scan_dealer_config.check_interval));
             loop {
                 interval.tick().await;
                 let mut remove_list = Vec::new();

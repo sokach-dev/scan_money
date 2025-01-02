@@ -18,7 +18,7 @@ pub struct Config {
     #[validate(length(min = 1))]
     pub private_key: String, // private key
 
-    pub rise_quickly_config: ScanDealerConfig, // rise quickly config
+    pub scan_dealer_config: ScanDealerConfig, // rise quickly config
 
     pub monitors: Vec<MonitorRule>, // monitor rules
 
