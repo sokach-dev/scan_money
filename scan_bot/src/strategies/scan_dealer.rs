@@ -101,7 +101,12 @@ impl Statistics {
                             }
                         }
                         if will_alarm {
-                            warn!("----> Alarm: {}, sol: {}", coin, first_sol);
+                            warn!(
+                                "----> Alarm: {}, sol: {}, price: {}",
+                                coin,
+                                first_sol,
+                                events[0].data.get_price()
+                            );
                         }
                     }
                 }
